@@ -1,5 +1,5 @@
 {
-  "name": "be-lms",
+  "name": "be-lms-v2",
   "private": true,
   "version": "0.1.0",
   "description": "A Strapi application",
@@ -18,27 +18,23 @@
     "eslint-plugin-react": "^7.14.0"
   },
   "dependencies": {
-    "knex": "latest",
     "lodash": "^4.17.5",
-    "sqlite3": "latest",
     "strapi": "3.0.0-beta.15",
     "strapi-admin": "3.0.0-beta.15",
-    "strapi-hook-bookshelf": "3.0.0-beta.15",
-    "strapi-hook-knex": "^3.0.0-beta.15",
-    "strapi-hook-mongoose": "^3.0.0-alpha.13",
-    "strapi-plugin-content-manager": "3.0.0-beta.15",
-    "strapi-plugin-content-type-builder": "3.0.0-beta.15",
-    "strapi-plugin-email": "3.0.0-beta.15",
+    "strapi-utils": "3.0.0-beta.15",
     "strapi-plugin-settings-manager": "3.0.0-beta.15",
-    "strapi-plugin-upload": "3.0.0-beta.15",
+    "strapi-plugin-content-type-builder": "3.0.0-beta.15",
+    "strapi-plugin-content-manager": "3.0.0-beta.15",
     "strapi-plugin-users-permissions": "3.0.0-beta.15",
-    "strapi-utils": "3.0.0-beta.15"
+    "strapi-plugin-email": "3.0.0-beta.15",
+    "strapi-plugin-upload": "3.0.0-beta.15",
+    "strapi-hook-mongoose": "3.0.0-beta.15"
   },
   "author": {
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "cb032dd2-2c7c-44de-b973-3f177931083a"
+    "uuid": "7fae448d-0416-472f-9038-d51aa992f437"
   },
   "engines": {
     "node": ">=10.0.0",
