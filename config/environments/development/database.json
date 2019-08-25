@@ -1,0 +1,19 @@
+{
+  "defaultConnection": "default",
+  "connections": {
+    "default": {
+      "connector": "strapi-hook-mongoose",
+      "settings": {
+        "client": "mongo",
+        "host": "${process.env.APP_HOST || 'ds249818.mlab.com'}",
+        "port": "${process.env.NODE_PORT || 49818}",
+        "database": "be-lms",
+        "username": "root",
+        "password": "o0i9u8y7"
+      },
+      "options": {
+        "ssl": true
+      }
+    }
+  }
+}
