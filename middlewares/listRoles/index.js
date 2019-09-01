@@ -11,7 +11,7 @@ module.exports = strapi => {
               result.push(item);
             }
           });
-          ctx.body = { roles: result };
+          ctx.body.roles = result;
         }
       });
     }
