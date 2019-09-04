@@ -80,6 +80,10 @@
     "address": {
       "maxLength": 256,
       "type": "string"
+    },
+    "courses": {
+      "collection": "course",
+      "via": "users"
     }
   }
 }

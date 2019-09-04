@@ -1,0 +1,28 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "data",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "data": {
+      "type": "json"
+    },
+    "struct": {
+      "type": "json"
+    },
+    "media": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "content": {
+      "model": "content",
+      "via": "relationData"
+    }
+  }
+}

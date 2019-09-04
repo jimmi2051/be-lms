@@ -1,0 +1,27 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "training",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "numberOfCourse": {
+      "type": "integer",
+      "default": "0"
+    },
+    "isActive": {
+      "type": "boolean"
+    },
+    "courses": {
+      "collection": "course",
+      "via": "trainings"
+    }
+  }
+}

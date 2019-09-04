@@ -3,7 +3,11 @@ module.exports = strapi => {
     initialize() {
       strapi.app.use(async (ctx, next) => {
         await next();
-        if (ctx.method == "GET" && ctx.url == "/users-permissions/roles") {
+        if (
+          ctx.method == "GET" &&
+          ctx.url == "/users-permissions/roles" &&
+          !ctx.request.admin
+        ) {
           let tempBody = ctx.response.body.roles;
           let result = [];
           tempBody.map((item, index) => {

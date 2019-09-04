@@ -1,0 +1,33 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "content",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "modules": {
+      "collection": "module",
+      "via": "contents",
+      "dominant": true
+    },
+    "examinations": {
+      "collection": "examination",
+      "via": "contents",
+      "dominant": true
+    },
+    "relationData": {
+      "model": "data",
+      "via": "content"
+    }
+  }
+}

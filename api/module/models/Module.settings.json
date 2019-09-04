@@ -1,0 +1,35 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "module",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "numberOfLecture": {
+      "type": "integer"
+    },
+    "subTitle": {
+      "type": "string"
+    },
+    "courses": {
+      "collection": "course",
+      "via": "modules",
+      "dominant": true
+    },
+    "examination": {
+      "model": "examination",
+      "via": "module"
+    },
+    "contents": {
+      "collection": "content",
+      "via": "modules"
+    }
+  }
+}
