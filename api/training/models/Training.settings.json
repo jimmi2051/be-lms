@@ -22,6 +22,11 @@
     "courses": {
       "collection": "course",
       "via": "trainings"
+    },
+    "users": {
+      "collection": "user",
+      "via": "trainings",
+      "plugin": "users-permissions"
     }
   }
 }

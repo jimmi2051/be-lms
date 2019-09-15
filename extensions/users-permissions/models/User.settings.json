@@ -67,13 +67,11 @@
       "type": "string"
     },
     "dateOfBirth": {
-      "required": true,
       "default": "1990-01-01T00:00:00.000Z",
       "type": "date"
     },
     "tel": {
       "minLength": 8,
-      "required": true,
       "maxLength": 32,
       "type": "string"
     },
@@ -81,9 +79,10 @@
       "maxLength": 256,
       "type": "string"
     },
-    "courses": {
-      "collection": "course",
-      "via": "users"
+    "trainings": {
+      "collection": "training",
+      "via": "users",
+      "dominant": true
     }
   }
 }

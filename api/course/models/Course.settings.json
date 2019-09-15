@@ -18,12 +18,6 @@
     "isActive": {
       "type": "boolean"
     },
-    "users": {
-      "collection": "user",
-      "via": "courses",
-      "dominant": true,
-      "plugin": "users-permissions"
-    },
     "trainings": {
       "collection": "training",
       "via": "courses",
