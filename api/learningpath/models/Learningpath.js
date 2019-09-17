@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Lifecycle callbacks for the `Examination` model.
+ * Lifecycle callbacks for the `Learningpath` model.
  */
 
 module.exports = {

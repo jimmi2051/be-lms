@@ -1,0 +1,32 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "learningpath",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "position": {
+      "type": "string"
+    },
+    "isRequired": {
+      "type": "boolean"
+    },
+    "markForCourse": {
+      "type": "integer"
+    },
+    "trainings": {
+      "collection": "training",
+      "via": "learningpaths",
+      "dominant": true
+    },
+    "courses": {
+      "collection": "course",
+      "dominant": true,
+      "via": "learningpaths"
+    }
+  }
+}

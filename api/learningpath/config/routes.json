@@ -2,48 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/examinations",
-      "handler": "Examination.find",
+      "path": "/learningpaths",
+      "handler": "Learningpath.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/examinations/count",
-      "handler": "Examination.count",
+      "path": "/learningpaths/count",
+      "handler": "Learningpath.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/examinations/:_id",
-      "handler": "Examination.findOne",
+      "path": "/learningpaths/:_id",
+      "handler": "Learningpath.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/examinations",
-      "handler": "Examination.create",
+      "path": "/learningpaths",
+      "handler": "Learningpath.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/examinations/:_id",
-      "handler": "Examination.update",
+      "path": "/learningpaths/:_id",
+      "handler": "Learningpath.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/examinations/:_id",
-      "handler": "Examination.delete",
+      "path": "/learningpaths/:_id",
+      "handler": "Learningpath.delete",
       "config": {
         "policies": []
       }

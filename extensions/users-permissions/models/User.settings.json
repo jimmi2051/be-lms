@@ -81,8 +81,8 @@
     },
     "trainings": {
       "collection": "training",
-      "via": "users",
-      "dominant": true
+      "dominant": true,
+      "via": "users"
     }
   }
 }

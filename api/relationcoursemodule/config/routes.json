@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/relationcoursemodules",
+      "handler": "Relationcoursemodule.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/relationcoursemodules/count",
+      "handler": "Relationcoursemodule.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/relationcoursemodules/:_id",
+      "handler": "Relationcoursemodule.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/relationcoursemodules",
+      "handler": "Relationcoursemodule.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/relationcoursemodules/:_id",
+      "handler": "Relationcoursemodule.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/relationcoursemodules/:_id",
+      "handler": "Relationcoursemodule.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -1,12 +1,15 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "training",
   "info": {
     "name": "training",
     "description": ""
   },
   "options": {
-    "timestamps": true
+    "timestamps": [
+      "createdAt",
+      "updatedAt"
+    ]
   },
   "attributes": {
     "name": {
@@ -19,14 +22,23 @@
     "isActive": {
       "type": "boolean"
     },
-    "courses": {
-      "collection": "course",
-      "via": "trainings"
-    },
     "users": {
       "collection": "user",
       "via": "trainings",
       "plugin": "users-permissions"
+    },
+    "description": {
+      "type": "text"
+    },
+    "numberOfStudent": {
+      "type": "integer"
+    },
+    "level": {
+      "type": "string"
+    },
+    "learningpaths": {
+      "collection": "learningpath",
+      "via": "trainings"
     }
   }
 }

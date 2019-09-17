@@ -1,12 +1,15 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "content",
   "info": {
     "name": "content",
     "description": ""
   },
   "options": {
-    "timestamps": true
+    "timestamps": [
+      "createdAt",
+      "updatedAt"
+    ]
   },
   "attributes": {
     "name": {
@@ -15,19 +18,14 @@
     "type": {
       "type": "string"
     },
+    "relationData": {
+      "model": "data",
+      "via": "content"
+    },
     "modules": {
       "collection": "module",
       "via": "contents",
       "dominant": true
-    },
-    "examinations": {
-      "collection": "examination",
-      "via": "contents",
-      "dominant": true
-    },
-    "relationData": {
-      "model": "data",
-      "via": "content"
     }
   }
 }

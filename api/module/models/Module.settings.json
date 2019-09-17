@@ -1,12 +1,15 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "module",
   "info": {
     "name": "module",
     "description": ""
   },
   "options": {
-    "timestamps": true
+    "timestamps": [
+      "createdAt",
+      "updatedAt"
+    ]
   },
   "attributes": {
     "name": {
@@ -15,17 +18,12 @@
     "numberOfLecture": {
       "type": "integer"
     },
-    "subTitle": {
+    "description": {
       "type": "string"
     },
-    "courses": {
-      "collection": "course",
-      "via": "modules",
-      "dominant": true
-    },
-    "examination": {
-      "model": "examination",
-      "via": "module"
+    "relationcoursemodules": {
+      "collection": "relationcoursemodule",
+      "via": "modules"
     },
     "contents": {
       "collection": "content",

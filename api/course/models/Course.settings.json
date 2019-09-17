@@ -1,12 +1,15 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "course",
   "info": {
     "name": "course",
     "description": ""
   },
   "options": {
-    "timestamps": true
+    "timestamps": [
+      "createdAt",
+      "updatedAt"
+    ]
   },
   "attributes": {
     "name": {
@@ -18,13 +21,12 @@
     "isActive": {
       "type": "boolean"
     },
-    "trainings": {
-      "collection": "training",
-      "via": "courses",
-      "dominant": true
+    "learningpaths": {
+      "collection": "learningpath",
+      "via": "courses"
     },
-    "modules": {
-      "collection": "module",
+    "relationcoursemodules": {
+      "collection": "relationcoursemodule",
       "via": "courses"
     }
   }

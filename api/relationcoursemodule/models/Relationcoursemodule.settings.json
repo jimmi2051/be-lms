@@ -1,0 +1,26 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "relationcoursemodule",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "position": {
+      "type": "string"
+    },
+    "courses": {
+      "collection": "course",
+      "via": "relationcoursemodules",
+      "dominant": true
+    },
+    "modules": {
+      "collection": "module",
+      "dominant": true,
+      "via": "relationcoursemodules"
+    }
+  }
+}
