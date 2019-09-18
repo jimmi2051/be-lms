@@ -14,8 +14,8 @@
     },
     "courses": {
       "collection": "course",
-      "via": "relationcoursemodules",
-      "dominant": true
+      "dominant": true,
+      "via": "relationcoursemodules"
     },
     "modules": {
       "collection": "module",

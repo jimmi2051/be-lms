@@ -24,8 +24,8 @@
     },
     "modules": {
       "collection": "module",
-      "via": "contents",
-      "dominant": true
+      "dominant": true,
+      "via": "contents"
     }
   }
 }

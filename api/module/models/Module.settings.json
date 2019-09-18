@@ -28,6 +28,11 @@
     "contents": {
       "collection": "content",
       "via": "modules"
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
     }
   }
 }

@@ -20,8 +20,8 @@
     },
     "trainings": {
       "collection": "training",
-      "via": "learningpaths",
-      "dominant": true
+      "dominant": true,
+      "via": "learningpaths"
     },
     "courses": {
       "collection": "course",

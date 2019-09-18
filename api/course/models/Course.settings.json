@@ -28,6 +28,11 @@
     "relationcoursemodules": {
       "collection": "relationcoursemodule",
       "via": "courses"
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
     }
   }
 }

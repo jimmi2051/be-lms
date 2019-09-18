@@ -39,6 +39,11 @@
     "learningpaths": {
       "collection": "learningpath",
       "via": "trainings"
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
     }
   }
 }
