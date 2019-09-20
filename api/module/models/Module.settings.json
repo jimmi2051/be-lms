@@ -21,10 +21,6 @@
     "description": {
       "type": "string"
     },
-    "relationcoursemodules": {
-      "collection": "relationcoursemodule",
-      "via": "modules"
-    },
     "contents": {
       "collection": "content",
       "via": "modules"
@@ -33,6 +29,10 @@
       "model": "file",
       "via": "related",
       "plugin": "upload"
+    },
+    "relationcoursemodules": {
+      "collection": "relationcoursemodule",
+      "via": "modules"
     }
   }
 }

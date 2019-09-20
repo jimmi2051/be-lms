@@ -36,14 +36,14 @@
     "level": {
       "type": "string"
     },
-    "learningpaths": {
-      "collection": "learningpath",
-      "via": "trainings"
-    },
     "thumbnail": {
       "model": "file",
       "via": "related",
       "plugin": "upload"
+    },
+    "learningpaths": {
+      "collection": "learningpath",
+      "via": "trainings"
     }
   }
 }

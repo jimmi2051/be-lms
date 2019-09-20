@@ -1,12 +1,15 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "learningpath",
   "info": {
     "name": "learningpath",
     "description": ""
   },
   "options": {
-    "timestamps": true
+    "timestamps": [
+      "createdAt",
+      "updatedAt"
+    ]
   },
   "attributes": {
     "position": {
@@ -20,13 +23,13 @@
     },
     "trainings": {
       "collection": "training",
-      "dominant": true,
-      "via": "learningpaths"
+      "via": "learningpaths",
+      "dominant": true
     },
     "courses": {
       "collection": "course",
-      "dominant": true,
-      "via": "learningpaths"
+      "via": "learningpaths",
+      "dominant": true
     }
   }
 }

@@ -1,12 +1,15 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "relationcoursemodule",
   "info": {
     "name": "relationcoursemodule",
     "description": ""
   },
   "options": {
-    "timestamps": true
+    "timestamps": [
+      "createdAt",
+      "updatedAt"
+    ]
   },
   "attributes": {
     "position": {
@@ -14,13 +17,13 @@
     },
     "courses": {
       "collection": "course",
-      "dominant": true,
-      "via": "relationcoursemodules"
+      "via": "relationcoursemodules",
+      "dominant": true
     },
     "modules": {
       "collection": "module",
-      "dominant": true,
-      "via": "relationcoursemodules"
+      "via": "relationcoursemodules",
+      "dominant": true
     }
   }
 }

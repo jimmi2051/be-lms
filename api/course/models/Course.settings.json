@@ -21,6 +21,11 @@
     "isActive": {
       "type": "boolean"
     },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
     "learningpaths": {
       "collection": "learningpath",
       "via": "courses"
@@ -28,11 +33,6 @@
     "relationcoursemodules": {
       "collection": "relationcoursemodule",
       "via": "courses"
-    },
-    "thumbnail": {
-      "model": "file",
-      "via": "related",
-      "plugin": "upload"
     }
   }
 }
