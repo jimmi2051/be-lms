@@ -28,8 +28,8 @@
     },
     "courses": {
       "collection": "course",
-      "via": "learningpaths",
-      "dominant": true
+      "dominant": true,
+      "via": "learningpaths"
     }
   }
 }

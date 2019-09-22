@@ -33,6 +33,11 @@
     "relationcoursemodules": {
       "collection": "relationcoursemodule",
       "via": "modules"
+    },
+    "user": {
+      "model": "user",
+      "via": "module",
+      "plugin": "users-permissions"
     }
   }
 }

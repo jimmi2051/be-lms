@@ -83,6 +83,14 @@
       "collection": "training",
       "dominant": true,
       "via": "users"
+    },
+    "course": {
+      "model": "course",
+      "via": "user"
+    },
+    "module": {
+      "model": "module",
+      "via": "user"
     }
   }
 }
