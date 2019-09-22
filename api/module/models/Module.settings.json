@@ -34,9 +34,10 @@
       "collection": "relationcoursemodule",
       "via": "modules"
     },
-    "user": {
-      "model": "user",
-      "via": "module",
+    "users": {
+      "collection": "user",
+      "via": "modules",
+      "dominant": true,
       "plugin": "users-permissions"
     }
   }

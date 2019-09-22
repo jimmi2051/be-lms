@@ -84,13 +84,13 @@
       "dominant": true,
       "via": "users"
     },
-    "course": {
-      "model": "course",
-      "via": "user"
+    "courses": {
+      "collection": "course",
+      "via": "users"
     },
-    "module": {
-      "model": "module",
-      "via": "user"
+    "modules": {
+      "collection": "module",
+      "via": "users"
     }
   }
 }
