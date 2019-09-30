@@ -21,13 +21,13 @@
     "markForCourse": {
       "type": "integer"
     },
-    "trainings": {
-      "collection": "training",
-      "via": "learningpaths",
-      "dominant": true
-    },
     "courses": {
       "collection": "course",
+      "dominant": true,
+      "via": "learningpaths"
+    },
+    "trainings": {
+      "collection": "training",
       "dominant": true,
       "via": "learningpaths"
     }

@@ -14,8 +14,8 @@
     },
     "trainings": {
       "collection": "training",
-      "via": "categorytrainings",
-      "dominant": true
+      "dominant": true,
+      "via": "categorytrainings"
     }
   }
 }

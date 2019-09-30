@@ -79,17 +79,17 @@
       "maxLength": 256,
       "type": "string"
     },
-    "trainings": {
-      "collection": "training",
-      "dominant": true,
-      "via": "users"
-    },
     "courses": {
       "collection": "course",
       "via": "users"
     },
     "modules": {
       "collection": "module",
+      "via": "users"
+    },
+    "trainings": {
+      "collection": "training",
+      "dominant": true,
       "via": "users"
     }
   }
