@@ -91,6 +91,10 @@
       "collection": "training",
       "dominant": true,
       "via": "users"
+    },
+    "activityusers": {
+      "collection": "activityuser",
+      "via": "users"
     }
   }
 }

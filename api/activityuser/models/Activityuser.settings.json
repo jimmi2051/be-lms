@@ -1,0 +1,30 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "activityuser",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "users": {
+      "collection": "user",
+      "via": "activityusers",
+      "dominant": true,
+      "plugin": "users-permissions"
+    },
+    "trainings": {
+      "collection": "training",
+      "via": "activityusers",
+      "dominant": true
+    },
+    "courses": {
+      "type": "json"
+    },
+    "totalMark": {
+      "type": "integer"
+    }
+  }
+}

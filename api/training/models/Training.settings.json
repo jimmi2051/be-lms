@@ -48,6 +48,10 @@
     "categorytrainings": {
       "collection": "categorytraining",
       "via": "trainings"
+    },
+    "activityusers": {
+      "collection": "activityuser",
+      "via": "trainings"
     }
   }
 }
