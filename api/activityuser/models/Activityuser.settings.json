@@ -15,16 +15,16 @@
       "dominant": true,
       "plugin": "users-permissions"
     },
-    "trainings": {
-      "collection": "training",
-      "via": "activityusers",
-      "dominant": true
-    },
     "courses": {
       "type": "json"
     },
     "totalMark": {
       "type": "integer"
+    },
+    "trainings": {
+      "collection": "training",
+      "dominant": true,
+      "via": "activityusers"
     }
   }
 }

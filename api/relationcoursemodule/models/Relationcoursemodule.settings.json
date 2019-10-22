@@ -13,7 +13,7 @@
   },
   "attributes": {
     "position": {
-      "type": "string"
+      "type": "integer"
     },
     "courses": {
       "collection": "course",

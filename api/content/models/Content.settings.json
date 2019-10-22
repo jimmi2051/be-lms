@@ -22,6 +22,12 @@
       "model": "data",
       "via": "content"
     },
+    "users": {
+      "collection": "user",
+      "via": "contents",
+      "dominant": true,
+      "plugin": "users-permissions"
+    },
     "modules": {
       "collection": "module",
       "dominant": true,

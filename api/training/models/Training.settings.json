@@ -41,16 +41,16 @@
       "via": "related",
       "plugin": "upload"
     },
-    "learningpaths": {
-      "collection": "learningpath",
-      "via": "trainings"
-    },
     "categorytrainings": {
       "collection": "categorytraining",
       "via": "trainings"
     },
     "activityusers": {
       "collection": "activityuser",
+      "via": "trainings"
+    },
+    "learningpaths": {
+      "collection": "learningpath",
       "via": "trainings"
     }
   }

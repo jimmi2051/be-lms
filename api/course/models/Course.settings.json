@@ -26,6 +26,12 @@
       "via": "related",
       "plugin": "upload"
     },
+    "users": {
+      "collection": "user",
+      "via": "courses",
+      "dominant": true,
+      "plugin": "users-permissions"
+    },
     "learningpaths": {
       "collection": "learningpath",
       "via": "courses"
@@ -34,11 +40,8 @@
       "collection": "relationcoursemodule",
       "via": "courses"
     },
-    "users": {
-      "collection": "user",
-      "via": "courses",
-      "dominant": true,
-      "plugin": "users-permissions"
+    "description": {
+      "type": "text"
     }
   }
 }

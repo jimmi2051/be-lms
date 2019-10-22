@@ -18,27 +18,27 @@
     "numberOfLecture": {
       "type": "integer"
     },
-    "description": {
-      "type": "string"
-    },
-    "contents": {
-      "collection": "content",
-      "via": "modules"
-    },
     "thumbnail": {
       "model": "file",
       "via": "related",
       "plugin": "upload"
-    },
-    "relationcoursemodules": {
-      "collection": "relationcoursemodule",
-      "via": "modules"
     },
     "users": {
       "collection": "user",
       "via": "modules",
       "dominant": true,
       "plugin": "users-permissions"
+    },
+    "relationcoursemodules": {
+      "collection": "relationcoursemodule",
+      "via": "modules"
+    },
+    "contents": {
+      "collection": "content",
+      "via": "modules"
+    },
+    "description": {
+      "type": "text"
     }
   }
 }

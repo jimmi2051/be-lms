@@ -12,22 +12,22 @@
     ]
   },
   "attributes": {
-    "position": {
-      "type": "string"
-    },
     "isRequired": {
       "type": "boolean"
     },
     "markForCourse": {
       "type": "integer"
     },
-    "courses": {
-      "collection": "course",
-      "dominant": true,
-      "via": "learningpaths"
-    },
     "trainings": {
       "collection": "training",
+      "via": "learningpaths",
+      "dominant": true
+    },
+    "position": {
+      "type": "integer"
+    },
+    "courses": {
+      "collection": "course",
       "dominant": true,
       "via": "learningpaths"
     }
