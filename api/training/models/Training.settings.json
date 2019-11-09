@@ -51,7 +51,7 @@
     },
     "learningpaths": {
       "collection": "learningpath",
-      "via": "trainings"
+      "via": "training"
     }
   }
 }

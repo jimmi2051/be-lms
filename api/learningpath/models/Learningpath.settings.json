@@ -18,17 +18,15 @@
     "markForCourse": {
       "type": "integer"
     },
-    "trainings": {
-      "collection": "training",
-      "via": "learningpaths",
-      "dominant": true
+    "training": {
+      "model": "training",
+      "via": "learningpaths"
     },
     "position": {
       "type": "integer"
     },
-    "courses": {
-      "collection": "course",
-      "dominant": true,
+    "course": {
+      "model": "course",
       "via": "learningpaths"
     }
   }

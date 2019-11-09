@@ -15,14 +15,12 @@
     "position": {
       "type": "integer"
     },
-    "courses": {
-      "collection": "course",
-      "dominant": true,
+    "course": {
+      "model": "course",
       "via": "relationcoursemodules"
     },
-    "modules": {
-      "collection": "module",
-      "dominant": true,
+    "module": {
+      "model": "module",
       "via": "relationcoursemodules"
     }
   }

@@ -32,16 +32,16 @@
       "dominant": true,
       "plugin": "users-permissions"
     },
+    "description": {
+      "type": "text"
+    },
     "learningpaths": {
       "collection": "learningpath",
-      "via": "courses"
+      "via": "course"
     },
     "relationcoursemodules": {
       "collection": "relationcoursemodule",
-      "via": "courses"
-    },
-    "description": {
-      "type": "text"
+      "via": "course"
     }
   }
 }

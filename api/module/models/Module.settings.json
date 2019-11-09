@@ -29,16 +29,16 @@
       "dominant": true,
       "plugin": "users-permissions"
     },
-    "relationcoursemodules": {
-      "collection": "relationcoursemodule",
-      "via": "modules"
-    },
     "contents": {
       "collection": "content",
       "via": "modules"
     },
     "description": {
       "type": "text"
+    },
+    "relationcoursemodules": {
+      "collection": "relationcoursemodule",
+      "via": "module"
     }
   }
 }
