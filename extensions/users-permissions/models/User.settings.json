@@ -79,15 +79,6 @@
       "maxLength": 256,
       "type": "string"
     },
-    "activityusers": {
-      "collection": "activityuser",
-      "via": "users"
-    },
-    "trainings": {
-      "collection": "training",
-      "dominant": true,
-      "via": "users"
-    },
     "contents": {
       "collection": "content",
       "via": "users"
@@ -98,6 +89,15 @@
     },
     "modules": {
       "collection": "module",
+      "via": "users"
+    },
+    "activityusers": {
+      "collection": "activityuser",
+      "via": "user"
+    },
+    "trainings": {
+      "collection": "training",
+      "dominant": true,
       "via": "users"
     }
   }

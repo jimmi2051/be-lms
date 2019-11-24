@@ -1,18 +1,20 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "activityuser",
   "info": {
     "name": "activityuser",
     "description": ""
   },
   "options": {
-    "timestamps": true
+    "timestamps": [
+      "createdAt",
+      "updatedAt"
+    ]
   },
   "attributes": {
-    "users": {
-      "collection": "user",
+    "user": {
+      "model": "user",
       "via": "activityusers",
-      "dominant": true,
       "plugin": "users-permissions"
     },
     "courses": {
@@ -21,9 +23,8 @@
     "totalMark": {
       "type": "integer"
     },
-    "trainings": {
-      "collection": "training",
-      "dominant": true,
+    "training": {
+      "model": "training",
       "via": "activityusers"
     }
   }

@@ -45,13 +45,16 @@
       "collection": "categorytraining",
       "via": "trainings"
     },
-    "activityusers": {
-      "collection": "activityuser",
-      "via": "trainings"
-    },
     "learningpaths": {
       "collection": "learningpath",
       "via": "training"
+    },
+    "activityusers": {
+      "collection": "activityuser",
+      "via": "training"
+    },
+    "subTitle": {
+      "type": "string"
     }
   }
 }
