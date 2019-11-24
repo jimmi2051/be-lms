@@ -214,6 +214,7 @@ module.exports = {
         }),
       });
     } catch (err) {
+      console.log("Error>>>>",err);
       const adminError = _.includes(err.message, 'username')
         ? {
           id: 'Auth.form.error.username.taken',
