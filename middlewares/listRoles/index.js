@@ -23,7 +23,7 @@ module.exports = strapi => {
         }
         // Process url mp4
         if (regexVideo.test(ctx.url)) {
-          const path = ctx.url;
+          const path = `${path.resolve(__dirname)}/${ctx.url}`;
           const stat = fs.statSync(path)
           const fileSize = stat.size
           const range = req.headers.range
