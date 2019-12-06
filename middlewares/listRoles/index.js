@@ -41,21 +41,10 @@ module.exports = strapi => {
 
             const chunksize = (end - start) + 1
             const file = fs.createReadStream(path, { start, end })
-            const head = {
-              'Content-Range': `bytes ${start}-${end}/${fileSize}`,
-              'Accept-Ranges': 'bytes',
-              'Content-Length': chunksize,
-              'Content-Type': 'video/mp4',
-            }
-
-            ctx.response.writeHead(206, head)
-            file.pipe(ctx.response)
+            ctx.response.header["Content-Range"] = `bytes ${start}-${end}/${fileSize}`,
+              ctx.response.header["Accept-Ranges"] = `bytes`,
+              file.pipe(ctx.response)
           } else {
-            const head = {
-              'Content-Length': fileSize,
-              'Content-Type': 'video/mp4',
-            }
-            ctx.response.writeHead(200, head)
             fs.createReadStream(path).pipe(ctx.response)
           }
         }
