@@ -2,7 +2,9 @@
   "host": "localhost",
   "port": 1337,
   "proxy": {
-    "enabled": false
+    "enabled": true,
+    "ssl": true,
+    "host": "be-lms.tk"
   },
   "cron": {
     "enabled": false
