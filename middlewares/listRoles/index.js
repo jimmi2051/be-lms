@@ -24,9 +24,10 @@ module.exports = strapi => {
         // Process url mp4
         if (regexVideo.test(ctx.url)) {
           const length = ctx.response.header["content-length"];
-          ctx.response["Content-Range"] = `bytes 0-${length}/${length}`
-          ctx.response["Accept-Range"] = `bytes`
+          ctx.response.header["Content-Range"] = `bytes 0-${length}/${length}`
+          ctx.response.header["Accept-Range"] = `bytes`
         }
+        console.log("ctx headers >>>>", ctx.response.header);
         console.log("ctx>>>>", ctx);
       });
     }
