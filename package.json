@@ -30,7 +30,8 @@
     "strapi-plugin-upload": "3.0.0-beta.15",
     "strapi-plugin-users-permissions": "3.0.0-beta.15",
     "strapi-provider-email-sendgrid": "^3.0.0-beta.17.8",
-    "strapi-utils": "3.0.0-beta.15"
+    "strapi-utils": "3.0.0-beta.15",
+    "koa-range": "0.3.0"
   },
   "author": {
     "name": "A Strapi developer"
