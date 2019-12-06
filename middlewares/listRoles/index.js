@@ -1,5 +1,5 @@
 const fs = require('fs')
-const path = require('path')
+const pathModule = require('path')
 module.exports = strapi => {
   const regexVideo = /\w+\.mp4$/;
   return {
@@ -23,7 +23,7 @@ module.exports = strapi => {
         }
         // Process url mp4
         if (regexVideo.test(ctx.url)) {
-          const path = `${path.resolve(__dirname)}/${ctx.url}`;
+          const path = `${pathModule.resolve(__dirname)}/${ctx.url}`;
           const stat = fs.statSync(path)
           const fileSize = stat.size
           const range = req.headers.range
