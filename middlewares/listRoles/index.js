@@ -23,10 +23,10 @@ module.exports = strapi => {
         }
         // Process url mp4
         if (regexVideo.test(ctx.url)) {
-          const path = `${pathModule.resolve(__dirname)}/${ctx.url}`;
+          const path = `${pathModule.resolve(".")}/public${ctx.url}`;
           const stat = fs.statSync(path)
           const fileSize = stat.size
-          const range = req.headers.range
+          const range = ctx.headers.range
           if (range) {
             const parts = range.replace(/bytes=/, "").split("-")
             const start = parseInt(parts[0], 10)
@@ -35,7 +35,7 @@ module.exports = strapi => {
               : fileSize - 1
 
             if (start >= fileSize) {
-              res.status(416).send('Requested range not satisfiable\n' + start + ' >= ' + fileSize);
+              ctx.response.status(416).send('Requested range not satisfiable\n' + start + ' >= ' + fileSize);
               return
             }
 
@@ -48,15 +48,15 @@ module.exports = strapi => {
               'Content-Type': 'video/mp4',
             }
 
-            res.writeHead(206, head)
-            file.pipe(res)
+            ctx.response.writeHead(206, head)
+            file.pipe(ctx.response)
           } else {
             const head = {
               'Content-Length': fileSize,
               'Content-Type': 'video/mp4',
             }
-            res.writeHead(200, head)
-            fs.createReadStream(path).pipe(res)
+            ctx.response.writeHead(200, head)
+            fs.createReadStream(path).pipe(ctx.response)
           }
         }
       });
