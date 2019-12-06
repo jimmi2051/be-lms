@@ -39,13 +39,8 @@ module.exports = strapi => {
               return
             }
 
-            const chunksize = (end - start) + 1
-            const file = fs.createReadStream(path, { start, end })
-            ctx.response.header["Content-Range"] = `bytes ${start}-${end}/${fileSize}`,
-              ctx.response.header["Accept-Ranges"] = `bytes`,
-              file.pipe(ctx.response)
-          } else {
-            fs.createReadStream(path).pipe(ctx.response)
+            ctx.response.header["Content-Range"] = `bytes ${start}-${end}/${fileSize}`;
+            ctx.response.header["Accept-Ranges"] = `bytes`;
           }
         }
       });
