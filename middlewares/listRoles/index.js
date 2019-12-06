@@ -23,26 +23,11 @@ module.exports = strapi => {
         }
         // Process url mp4
         if (regexVideo.test(ctx.url)) {
-          const path = `${pathModule.resolve(".")}/public${ctx.url}`;
-          const stat = fs.statSync(path)
-          const fileSize = stat.size
-          const range = ctx.headers.range
-          if (range) {
-            const parts = range.replace(/bytes=/, "").split("-")
-            const start = parseInt(parts[0], 10)
-            const end = parts[1]
-              ? parseInt(parts[1], 10)
-              : fileSize - 1
-
-            if (start >= fileSize) {
-              ctx.response.status(416).send('Requested range not satisfiable\n' + start + ' >= ' + fileSize);
-              return
-            }
-
-            ctx.response.header["Content-Range"] = `bytes ${start}-${end}/${fileSize}`;
-            ctx.response.header["Accept-Ranges"] = `bytes`;
-          }
+          const length = ctx.response.header["content-length"];
+          ctx.response["Content-Range"] = `bytes 0-${length}/${length}`
+          ctx.response["Accept-Range"] = `bytes`
         }
+        console.log("ctx>>>>", ctx);
       });
     }
   };
