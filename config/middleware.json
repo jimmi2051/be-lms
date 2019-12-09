@@ -1,19 +1,8 @@
 {
   "timeout": 100,
   "load": {
-    "before": [
-      "responseTime",
-      "logger",
-      "cors",
-      "responses",
-      "gzip"
-    ],
-    "order": [
-      "listRoles"
-    ],
-    "after": [
-      "parser",
-      "router"
-    ]
+    "before": ["responseTime", "logger", "cors", "responses", "gzip"],
+    "order": ["listRoles", "koaRange"],
+    "after": ["parser", "router"]
   }
 }

@@ -1,5 +1,8 @@
 {
-    "listRoles": {
-        "enabled": true
-    }
+  "listRoles": {
+    "enabled": true
+  },
+  "koaRange": {
+    "enabled": true
+  }
 }
