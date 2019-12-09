@@ -11,28 +11,34 @@ module.exports = {
       statusCode: 200,
       success: true,
       message: "Update successfully."
-    };
-    const { activityusers } = ctx.state.user;
+        };
+    const { activityusers
+        } = ctx.state.user;
+    console.log("Activity User", activityusers);
     const trainingId = ctx.params._id;
     const moduleId = ctx.request.body.moduleId;
     // Check training exists in activity user ---
     let checkExist = false;
     let currentActivity = {};
     activityusers.map((item, index) => {
-      const { training } = item;
-      let itemTrainingId = _.isEmpty(training) ? "" : training.toString();
+      const { training
+            } = item;
+      let itemTrainingId = _.isEmpty(training) ? "": training.toString();
       if (itemTrainingId === trainingId) {
         checkExist = true;
         currentActivity = item;
-      }
-    });
+            }
+        });
     if (!checkExist) {
       result.statusCode = 400;
       result.success = false;
       result.message =
         "Error! Training not found. Please check your training and try again.";
       return result;
-    }
+        }
+        // console.log("ctx>>>", ctx.request.user);
+    console.log("id>>>", ctx.params);
+    console.log("body>>>", ctx.request.body);
 
     const populateLearningPath = Learningpath.associations
       .filter(ast => ast.autoPopulate !== false)
@@ -52,7 +58,7 @@ module.exports = {
       .then(result => {
         learningPathOfTraining = result;
         return result;
-      });
+        });
 
     let relationCourseOfModule;
     await Relationcoursemodule.find({})
@@ -62,43 +68,23 @@ module.exports = {
       .then(result => {
         relationCourseOfModule = result;
         return result;
-      });
+        });
+    console.log("learningPathOfTraining", learningPathOfTraining);
+    console.log("relationCourseOfModule", relationCourseOfModule);
     let listCourses = [];
     learningPathOfTraining.map((learningPath, idxLearning) => {
       relationCourseOfModule.map((relationCourse, idxRelation) => {
-        if (_.isEqual(learningPath.course._id, relationCourse.course._id)) {
+        if (learningPath.course._id === relationCourse.course._id) {
           listCourses.push(learningPath.course._id);
-        }
-      });
-    });
+                }
+            });
+        });
 
-    let { courses, totalMark } = currentActivity;
-    if (_.isArray(courses)) {
-      listCourses.map((item, index) => {
-        const idxCourse = _.findIndex(courses, course =>
-          _.isEqual(course.id, item)
-        );
-        // Exists course in activity
-        if (idxCourse > -1) {
-          const currentCourse = courses[idxCourse];
-          const idxModule = _.findIndex(
-            currentCourse.modules,
-            module => module === moduleId
-          );
-          if (idxModule === -1) {
-            currentCourse.modules.push(moduleId);
-          }
-        } else {
-          courses.push({
-            id: item,
-            modules: [moduleId]
-          });
-        }
-      });
+    return listCourses;
+
+    // return strapi.services.activityuser.edit_custom(
+        //   ctx.params,
+        //   ctx.request.body
+        // );
     }
-    return strapi.services.activityuser.update(
-      { _id: currentActivity._id },
-      { courses: courses }
-    );
-  }
 };
