@@ -47,6 +47,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "PUT",
+      "path": "/activityusers/update/:_id",
+      "handler": "Activityuser.update_custom",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }
