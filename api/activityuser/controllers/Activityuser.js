@@ -72,8 +72,9 @@ module.exports = {
     learningPathOfTraining.map((learningPath, idxLearning) => {
       relationCourseOfModule.map((relationCourse, idxRelation) => {
         if (
-          _.isEqual(learningPath.course._id, relationCourse.course._id) &&
-          !_.isNull(learningPath.course)
+          !_.isNull(learningPath.course) &&
+          !_.isNull(relationCourse.course) &&
+          _.isEqual(learningPath.course._id, relationCourse.course._id)
         ) {
           const courseId = learningPath.course._id;
           if (_.isArray(courses)) {
