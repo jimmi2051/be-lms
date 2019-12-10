@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * Auth.js controller
@@ -7,35 +7,38 @@
  */
 
 /* eslint-disable no-useless-escape */
-const crypto = require('crypto');
-const _ = require('lodash');
-const grant = require('grant-koa');
+const crypto = require("crypto");
+const _ = require("lodash");
+const grant = require("grant-koa");
 
 const emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const mediumRegex = new RegExp(
+  "^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})"
+);
 
 module.exports = {
   register: async ctx => {
     const pluginStore = await strapi.store({
-      environment: '',
-      type: 'plugin',
-      name: 'users-permissions',
+      environment: "",
+      type: "plugin",
+      name: "users-permissions"
     });
 
     const settings = await pluginStore.get({
-      key: 'advanced',
+      key: "advanced"
     });
 
     if (!settings.allow_register) {
       return ctx.badRequest(
         null,
         ctx.request.admin
-          ? [{ messages: [{ id: 'Auth.advanced.allow_register' }] }]
-          : 'Register action is currently disabled.'
+          ? [{ messages: [{ id: "Auth.advanced.allow_register" }] }]
+          : "Register action is currently disabled."
       );
     }
 
     const params = _.assign(ctx.request.body, {
-      provider: 'local',
+      provider: "local"
     });
 
     // Password is required.
@@ -43,36 +46,40 @@ module.exports = {
       return ctx.badRequest(
         null,
         ctx.request.admin
-          ? [{ messages: [{ id: 'Auth.form.error.password.provide' }] }]
-          : 'Please provide your password.'
+          ? [{ messages: [{ id: "Auth.form.error.password.provide" }] }]
+          : "Please provide your password."
       );
+    }
+
+    if (!mediumRegex.test(params.password)) {
+      return ctx.badRequest(null, "The password is too simple");
     }
 
     // Throw an error if the password selected by the user
     // contains more than two times the symbol '$'.
     if (
-      strapi.plugins['users-permissions'].services.user.isHashed(
+      strapi.plugins["users-permissions"].services.user.isHashed(
         params.password
       )
     ) {
       return ctx.badRequest(
         null,
         ctx.request.admin
-          ? [{ messages: [{ id: 'Auth.form.error.password.format' }] }]
-          : 'Your password cannot contain more than three times the symbol `$`.'
+          ? [{ messages: [{ id: "Auth.form.error.password.format" }] }]
+          : "Your password cannot contain more than three times the symbol `$`."
       );
     }
 
-    const role = await strapi.plugins['users-permissions']
-      .queries('role', 'users-permissions')
+    const role = await strapi.plugins["users-permissions"]
+      .queries("role", "users-permissions")
       .findOne({ _id: params.role }, []);
 
     if (!role) {
       return ctx.badRequest(
         null,
         ctx.request.admin
-          ? [{ messages: [{ id: 'Auth.form.error.role.notFound' }] }]
-          : 'Impossible to find the default role.'
+          ? [{ messages: [{ id: "Auth.form.error.role.notFound" }] }]
+          : "Impossible to find the default role."
       );
     }
 
@@ -85,21 +92,21 @@ module.exports = {
 
     params.role = role._id || role.id;
     params.password = await strapi.plugins[
-      'users-permissions'
+      "users-permissions"
     ].services.user.hashPassword(params);
 
-    const user = await strapi.plugins['users-permissions']
-      .queries('user', 'users-permissions')
+    const user = await strapi.plugins["users-permissions"]
+      .queries("user", "users-permissions")
       .findOne({
-        email: params.email,
+        email: params.email
       });
 
     if (user && user.provider === params.provider) {
       return ctx.badRequest(
         null,
         ctx.request.admin
-          ? [{ messages: [{ id: 'Auth.form.error.email.taken' }] }]
-          : 'Email is already taken.'
+          ? [{ messages: [{ id: "Auth.form.error.email.taken" }] }]
+          : "Email is already taken."
       );
     }
 
@@ -107,8 +114,8 @@ module.exports = {
       return ctx.badRequest(
         null,
         ctx.request.admin
-          ? [{ messages: [{ id: 'Auth.form.error.email.taken' }] }]
-          : 'Email is already taken.'
+          ? [{ messages: [{ id: "Auth.form.error.email.taken" }] }]
+          : "Email is already taken."
       );
     }
 
@@ -117,54 +124,54 @@ module.exports = {
         params.confirmed = true;
       }
 
-      const user = await strapi.plugins['users-permissions']
-        .queries('user', 'users-permissions')
+      const user = await strapi.plugins["users-permissions"]
+        .queries("user", "users-permissions")
         .create(params);
 
-      const jwt = strapi.plugins['users-permissions'].services.jwt.issue(
-        _.pick(user.toJSON ? user.toJSON() : user, ['_id', 'id'])
+      const jwt = strapi.plugins["users-permissions"].services.jwt.issue(
+        _.pick(user.toJSON ? user.toJSON() : user, ["_id", "id"])
       );
 
       if (settings.email_confirmation) {
         const storeEmail =
           (await pluginStore.get({
-            key: 'email',
+            key: "email"
           })) || {};
 
-        const settings = storeEmail['email_confirmation']
-          ? storeEmail['email_confirmation'].options
+        const settings = storeEmail["email_confirmation"]
+          ? storeEmail["email_confirmation"].options
           : {};
 
         settings.message = await strapi.plugins[
-          'users-permissions'
+          "users-permissions"
         ].services.userspermissions.template(settings.message, {
           URL: new URL(
-            '/auth/email-confirmation',
+            "/auth/email-confirmation",
             strapi.config.url
           ).toString(),
           USER: _.omit(user.toJSON ? user.toJSON() : user, [
-            'password',
-            'resetPasswordToken',
-            'role',
-            'provider',
+            "password",
+            "resetPasswordToken",
+            "role",
+            "provider"
           ]),
-          CODE: jwt,
+          CODE: jwt
         });
 
         settings.object = await strapi.plugins[
-          'users-permissions'
+          "users-permissions"
         ].services.userspermissions.template(settings.object, {
           USER: _.omit(user.toJSON ? user.toJSON() : user, [
-            'password',
-            'resetPasswordToken',
-            'role',
-            'provider',
-          ]),
+            "password",
+            "resetPasswordToken",
+            "role",
+            "provider"
+          ])
         });
 
         try {
           // Send an email to the user.
-          await strapi.plugins['email'].services.email.send({
+          await strapi.plugins["email"].services.email.send({
             to: (user.toJSON ? user.toJSON() : user).email,
             from:
               settings.from.email && settings.from.name
@@ -173,7 +180,7 @@ module.exports = {
             replyTo: settings.response_email,
             subject: settings.object,
             text: settings.message,
-            html: settings.message,
+            html: settings.message
           });
         } catch (err) {
           return ctx.badRequest(null, err);
@@ -183,19 +190,19 @@ module.exports = {
       ctx.send({
         jwt,
         user: _.omit(user.toJSON ? user.toJSON() : user, [
-          'password',
-          'resetPasswordToken',
-        ]),
+          "password",
+          "resetPasswordToken"
+        ])
       });
     } catch (err) {
-      const adminError = _.includes(err.message, 'username')
-        ? 'Auth.form.error.username.taken'
-        : 'Auth.form.error.email.taken';
+      const adminError = _.includes(err.message, "username")
+        ? "Auth.form.error.username.taken"
+        : "Auth.form.error.email.taken";
 
       ctx.badRequest(
         null,
         ctx.request.admin ? [{ messages: [{ id: adminError }] }] : err.message
       );
     }
-  },
+  }
 };
