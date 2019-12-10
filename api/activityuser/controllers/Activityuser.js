@@ -79,14 +79,14 @@ module.exports = {
           const courseId = learningPath.course._id;
           if (_.isArray(courses)) {
             const idxCourse = _.findIndex(courses, course =>
-              _.isEqual(course.id, courseId)
+              _.isEqual(course.id.toString(), courseId.toString())
             );
             // Exists course in activity
             if (idxCourse > -1) {
               const currentCourse = courses[idxCourse];
               const idxModule = _.findIndex(
                 currentCourse.modules,
-                module => module === moduleId
+                module => module.toString() === moduleId.toString()
               );
               if (idxModule === -1) {
                 currentCourse.modules.push(moduleId);
