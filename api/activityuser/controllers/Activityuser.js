@@ -47,13 +47,17 @@ module.exports = {
     let learningPathOfTraining;
     await Learningpath.find({})
       .where("training", trainingId)
-      .populate(populateLearningPath)
+      .populate({
+        path: "course",
+        populate: {
+          path: "relationcoursemodules"
+        }
+      })
       .exec()
       .then(result => {
         learningPathOfTraining = result;
         return result;
       });
-
     let relationCourseOfModule;
     await Relationcoursemodule.find({})
       .where("module", moduleId)
@@ -63,45 +67,52 @@ module.exports = {
         relationCourseOfModule = result;
         return result;
       });
-    let listCourses = [];
+
+    let { courses, totalMark } = currentActivity;
     learningPathOfTraining.map((learningPath, idxLearning) => {
       relationCourseOfModule.map((relationCourse, idxRelation) => {
         if (
           _.isEqual(learningPath.course._id, relationCourse.course._id) &&
           !_.isNull(learningPath.course)
         ) {
-          listCourses.push(learningPath.course._id);
+          const courseId = learningPath.course._id;
+          if (_.isArray(courses)) {
+            const idxCourse = _.findIndex(courses, course =>
+              _.isEqual(course.id, courseId)
+            );
+            // Exists course in activity
+            if (idxCourse > -1) {
+              const currentCourse = courses[idxCourse];
+              const idxModule = _.findIndex(
+                currentCourse.modules,
+                module => module === moduleId
+              );
+              if (idxModule === -1) {
+                currentCourse.modules.push(moduleId);
+                if (
+                  learningPath.course.relationcoursemodules.length ===
+                  currentCourse.modules.length
+                ) {
+                  totalMark += learningPath.markForCourse;
+                }
+              }
+            } else {
+              courses.push({
+                id: courseId,
+                modules: [moduleId]
+              });
+              if (learningPath.course.relationcoursemodules.length === 1) {
+                totalMark += learningPath.markForCourse;
+              }
+            }
+          }
         }
       });
     });
 
-    let { courses, totalMark } = currentActivity;
-    if (_.isArray(courses)) {
-      listCourses.map((item, index) => {
-        const idxCourse = _.findIndex(courses, course =>
-          _.isEqual(course.id, item)
-        );
-        // Exists course in activity
-        if (idxCourse > -1) {
-          const currentCourse = courses[idxCourse];
-          const idxModule = _.findIndex(
-            currentCourse.modules,
-            module => module === moduleId
-          );
-          if (idxModule === -1) {
-            currentCourse.modules.push(moduleId);
-          }
-        } else {
-          courses.push({
-            id: item,
-            modules: [moduleId]
-          });
-        }
-      });
-    }
     return strapi.services.activityuser.update(
       { _id: currentActivity._id },
-      { courses: courses }
+      { courses, totalMark }
     );
   }
 };
