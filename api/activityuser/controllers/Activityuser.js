@@ -66,7 +66,10 @@ module.exports = {
     let listCourses = [];
     learningPathOfTraining.map((learningPath, idxLearning) => {
       relationCourseOfModule.map((relationCourse, idxRelation) => {
-        if (_.isEqual(learningPath.course._id, relationCourse.course._id)) {
+        if (
+          _.isEqual(learningPath.course._id, relationCourse.course._id) &&
+          !_.isNull(learningPath.course)
+        ) {
           listCourses.push(learningPath.course._id);
         }
       });
