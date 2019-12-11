@@ -94,7 +94,10 @@ module.exports = {
                   learningPath.course.relationcoursemodules.length ===
                   currentCourse.modules.length
                 ) {
-                  totalMark += learningPath.markForCourse;
+                  const mark = learningPath.markForCourse
+                    ? learningPath.markForCourse
+                    : 0;
+                  totalMark += mark;
                 }
               }
             } else {
