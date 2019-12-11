@@ -69,6 +69,9 @@ module.exports = {
       });
 
     let { courses, totalMark } = currentActivity;
+    if (_.isUndefined(totalMark)) {
+      totalMark = 0;
+    }
     learningPathOfTraining.map((learningPath, idxLearning) => {
       relationCourseOfModule.map((relationCourse, idxRelation) => {
         if (
@@ -94,9 +97,6 @@ module.exports = {
                   learningPath.course.relationcoursemodules.length ===
                   currentCourse.modules.length
                 ) {
-                  if (!totalMark) {
-                    totalMark = 0;
-                  }
                   const mark = learningPath.markForCourse
                     ? learningPath.markForCourse
                     : 0;
