@@ -94,6 +94,9 @@ module.exports = {
                   learningPath.course.relationcoursemodules.length ===
                   currentCourse.modules.length
                 ) {
+                  if (!totalMark) {
+                    totalMark = 0;
+                  }
                   const mark = learningPath.markForCourse
                     ? learningPath.markForCourse
                     : 0;
