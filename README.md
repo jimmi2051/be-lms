@@ -48,6 +48,45 @@ Give an example
 Give an example
 ```
 
+## Running in local
+
+Change API config, config file `config/environments/development/database.json` 
+
+```
+{
+  "defaultConnection": "default",
+  "connections": {
+    "default": {
+      "connector": "strapi-hook-mongoose",
+      "settings": {
+        "client": "mongo",
+        "host": "${process.env.APP_HOST || 'localhost'}",
+        "port": "${process.env.NODE_PORT || 27017}",
+        "database": "be-lms",
+        "username": "",
+        "password": ""
+      },
+      "options": {
+        "authenticationDatabase": "be-lms",
+        "ssl": false
+      }
+    }
+  }
+}
+```
+
+Run scripts:
+
+```
+npm install
+```
+
+Instal package plugin done, run scripts start project
+
+```
+npm run develop
+```
+
 ## Deployment
 
 Deploy this on a live system with VPS Linux
