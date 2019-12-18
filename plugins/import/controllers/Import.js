@@ -30,6 +30,16 @@ module.exports = {
     };
   },
   import: async ctx => {
+    const pluginsStore = strapi.store({
+      environment: "",
+      type: "plugin",
+      name: "content-manager"
+    });
+
+    const models = await pluginsStore.get({ key: "schema" });
+
+    console.log("model>>>>",models);
+
     const finalResult = {
       statusCode: 200,
       success: true,
@@ -58,13 +68,11 @@ module.exports = {
           }
 
           for (let key in strapi.services) {
-            console.log("key>>>>", key);
             // skip loop if the property is from prototype
             if (!strapi.services.hasOwnProperty(key)) continue;
             // get service of model by nameModels
             if (key === nameModels) {
               let model = strapi.services[key];
-
               const listData = result.data;
 
               for (let i = 2; i < listData.length; i++) {
