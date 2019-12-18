@@ -30,6 +30,12 @@ module.exports = {
     };
   },
   import: async ctx => {
+    const finalResult = {
+      statusCode: 200,
+      success: true,
+      message: "Import data successfully."
+    };
+
     const { files = {} } = ctx.request.body.files;
     if (_.isEmpty(files)) {
       return ctx.badRequest(
@@ -39,16 +45,43 @@ module.exports = {
           : "Files are empty"
       );
     }
+
     const content = fs.readFileSync(files.path, "utf8");
+
     try {
       Papa.parse(content, {
+        skipEmptyLines: true,
         complete: result => {
-          console.log("result>>>", result.data);
-          ctx.send(result.data);
+          let nameModels = result.data[0];
+          if (_.isArray(nameModels)) {
+            nameModels = nameModels[0];
+          }
+
+          for (let key in strapi.services) {
+            console.log("key>>>>", key);
+            // skip loop if the property is from prototype
+            if (!strapi.services.hasOwnProperty(key)) continue;
+            // get service of model by nameModels
+            if (key === nameModels) {
+              let model = strapi.services[key];
+
+              const listData = result.data;
+
+              for (let i = 2; i < listData.length; i++) {
+                let objModel = {};
+
+                for (let y = 0; y < listData[i].length; y++) {
+                  objModel[listData[1][y]] = listData[i][y];
+                }
+                model.create(objModel);
+              }
+            }
+          }
+          ctx.send(finalResult);
         }
       });
     } catch {
-      return ctx.badRequest(null, "Format of file is wrong. ");
+      return ctx.badRequest(null, "The format of the file is wrong. ");
     }
   }
 };
