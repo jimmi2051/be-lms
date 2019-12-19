@@ -36,10 +36,8 @@ module.exports = {
       name: "content-manager"
     });
 
-    const models = await pluginsStore.get({ key: "schema" });
-
-    console.log("model>>>>",models);
-
+    const pluginModels = await pluginsStore.get({ key: "schema" });
+    let { models } = pluginModels;
     const finalResult = {
       statusCode: 200,
       success: true,
@@ -66,25 +64,58 @@ module.exports = {
           if (_.isArray(nameModels)) {
             nameModels = nameModels[0];
           }
+          // Get fields of content type
+          let fields = {};
 
-          for (let key in strapi.services) {
-            // skip loop if the property is from prototype
-            if (!strapi.services.hasOwnProperty(key)) continue;
-            // get service of model by nameModels
-            if (key === nameModels) {
-              let model = strapi.services[key];
-              const listData = result.data;
+          if (models.hasOwnProperty(nameModels)) {
+            fields = models[nameModels].attributes;
+          } else {
+            return ctx.badRequest(null, "Content Type name couldn't be found");
+          }
 
-              for (let i = 2; i < listData.length; i++) {
-                let objModel = {};
+          let model = {};
 
-                for (let y = 0; y < listData[i].length; y++) {
-                  objModel[listData[1][y]] = listData[i][y];
+          if (strapi.services.hasOwnProperty(nameModels)) {
+            model = strapi.services[nameModels];
+          } else {
+            return ctx.badRequest(null, "Content Type name couldn't be found");
+          }
+
+          const listData = result.data;
+
+          for (let i = 2; i < listData.length; i++) {
+            let objModel = {};
+            for (let y = 0; y < listData[i].length; y++) {
+              const headerObject = listData[1][y];
+              if (fields.hasOwnProperty(headerObject)) {
+                let data = listData[i][y];
+                if (fields[headerObject].hasOwnProperty("collection")) {
+                  data = data.toString();
+                  data = data.split("“").join('"');
+                  data = data.split("”").join('"');
+                  data = JSON.parse(data);
                 }
-                model.create(objModel);
+                switch (fields[headerObject].type) {
+                  //parse to JSON data
+                  case "json":
+                    data = data.toString();
+                    data = data.split("“").join('"');
+                    data = data.split("”").join('"');
+                    data = JSON.parse(data);
+                    break;
+                  //parse string boolean of csv
+                  case "boolean":
+                    data = data.toLowerCase();
+                    break;
+                  default:
+                    break;
+                }
+                objModel[headerObject] = data;
               }
             }
+            model.create(objModel);
           }
+
           ctx.send(finalResult);
         }
       });
