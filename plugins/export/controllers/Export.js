@@ -70,12 +70,10 @@ module.exports = {
             title: key
           });
         }
-        console.log("header>>>>", header);
         let data = [];
         result.map((item, index) => {
           data.push(item);
         });
-        console.log("ata>>>>", data);
 
         const csvWriter = createCsvWriter({
           path: `${path}/${collectionName}-${now}.csv`,
