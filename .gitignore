@@ -112,3 +112,8 @@ exports
 build
 yarn.lock
 package-lock.json
+
+#####
+#Backup
+#####
+backups

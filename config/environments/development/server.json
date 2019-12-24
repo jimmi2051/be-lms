@@ -7,7 +7,7 @@
     "host": "be-lms.tk"
   },
   "cron": {
-    "enabled": false
+    "enabled": true
   },
   "admin": {
     "autoOpen": false
