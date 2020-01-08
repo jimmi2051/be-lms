@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"be-lms.users-permissions_user"},{"v":{"$numberInt":"2"},"unique":true,"key":{"username":{"$numberInt":"1"}},"name":"username_1","ns":"be-lms.users-permissions_user","background":true}],"uuid":"8964a134563c4ca7bc4ebfc5ace2f055"}

@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"be-lms.course"}],"uuid":"f088fca330bd4a108d26fb393f0adce1"}
