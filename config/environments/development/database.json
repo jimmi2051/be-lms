@@ -4,12 +4,12 @@
     "default": {
       "connector": "strapi-hook-mongoose",
       "settings": {
-        "client": "mongo",
-        "host": "${process.env.APP_HOST || 'localhost'}",
-        "port": "${process.env.NODE_PORT || 27017}",
         "database": "be-lms",
-        "username": "",
-        "password": ""
+        "host": "${process.env.APP_HOST || 'ds249818.mlab.com'}",
+        "port": "${process.env.NODE_PORT || 49818}",
+        "srv": false,
+        "username": "root",
+        "password": "o0i9u8y7"
       },
       "options": {
         "authenticationDatabase": "be-lms",

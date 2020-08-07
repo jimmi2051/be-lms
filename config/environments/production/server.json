@@ -3,9 +3,7 @@
   "port": "${process.env.PORT || 1337}",
   "production": true,
   "proxy": {
-    "enabled": true,
-    "host": "be-lms.tk",
-    "ssl": true
+    "enabled": false
   },
   "cron": {
     "enabled": false
