@@ -117,3 +117,5 @@ package-lock.json
 #Backup
 #####
 backups
+.env
+.strapi-updater
